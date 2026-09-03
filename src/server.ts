@@ -33,6 +33,10 @@ app.use((error: unknown, _req: express.Request, res: express.Response, _next: ex
   fail(res, 500, message);
 });
 
-app.listen(config.port, () => {
-  console.log(`Fastonmed API running on http://localhost:${config.port}`);
-});
+export default app;
+
+if (process.env.VERCEL !== "1") {
+  app.listen(config.port, () => {
+    console.log(`Fastonmed API running on http://localhost:${config.port}`);
+  });
+}
